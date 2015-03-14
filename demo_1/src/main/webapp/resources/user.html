@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	
+	<title>用户管理</title>
+	
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="winlet/winlet.css" rel="stylesheet"></link>
+	
+	<script src="jquery/jquery-1.11.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="winlet/winlet_local.js"></script>
+	<script src="winlet/winlet_bootstrap.js"></script>
+	
+	<script>
+		$(function() {
+			AeJSEngine.init();
+		});
+	</script>
+</head>
+<body role="document">
+	<div class="container">
+		<h1 class="page-header">用户管理</h1>
+
+		<div data-winlet="demo_1/user/listWin"></div>
+		<div data-winlet="demo_1/user/editWin dialog:yes"></div>
+	</div>
+</body>
+</html>

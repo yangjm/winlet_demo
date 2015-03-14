@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<beans:bean id="handlerMapping"
+		class="com.aggrepoint.winlet.spring.WinletRequestMappingHandlerMapping" />
+
+	<beans:bean id="conversionService"
+		class="com.aggrepoint.winlet.spring.WinletFormattingConversionServiceFactoryBean">
+	</beans:bean>
+
+	<annotation-driven conversion-service="conversionService">
+		<argument-resolvers>
+			<beans:bean
+				class='com.aggrepoint.winlet.spring.WinletHandlerMethodArgumentResolver' />
+		</argument-resolvers>
+	</annotation-driven>
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jspx resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean id="jspResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:order="10" p:viewNames="/WEB-INF/*.jsp" />
+	<beans:bean id="jspxResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:order="20" p:prefix="/WEB-INF/views/" p:suffix=".jsp" />
+
+	<context:component-scan
+		base-package="com.aggrepoint.winlet.site, com.aggrepoint.demo.controller" />
+
+	<beans:bean id="requestLogger"
+		class="com.aggrepoint.winlet.plugin.DefaultRequestLogger" />
+	<beans:bean id="accessRuleEngine"
+		class="com.aggrepoint.winlet.plugin.DefaultAccessRuleEngine" />
+	<beans:bean id="psnRuleEngine"
+		class="com.aggrepoint.winlet.plugin.DefaultPsnRuleEngine" />
+	<beans:bean id="userEngine"
+		class="com.aggrepoint.winlet.plugin.DefaultUserEngine" />
+</beans:beans>
