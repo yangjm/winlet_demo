@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.aggrepoint.winlet.demos</groupId>
-	<artifactId>demo_1</artifactId>
-	<name>Winlet Demo 1</name>
+	<artifactId>demo_2</artifactId>
+	<name>Winlet Demo 2</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 
@@ -112,8 +112,8 @@
 					<modules>
 						<webModule>
 							<groupId>com.aggrepoint.winlet.demos</groupId>
-							<artifactId>demo_1</artifactId>
-							<contextRoot>/demo_1</contextRoot>
+							<artifactId>demo_2</artifactId>
+							<contextRoot>/demo_2</contextRoot>
 						</webModule>
 					</modules>
 				</configuration>

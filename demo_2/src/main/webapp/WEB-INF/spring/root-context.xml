@@ -58,6 +58,10 @@
 		</tx:attributes>
 	</tx:advice>
 
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+		p:basename="i18n/messages" />
+
 	<bean class="com.aggrepoint.dao.DaoScannerConfigurer"
 		p:basePackage="com.aggrepoint.demo.dao">
 	</bean>
