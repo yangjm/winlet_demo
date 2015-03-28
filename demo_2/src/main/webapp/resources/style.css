@@ -55,3 +55,32 @@ body {
 .bottom_space {
 	margin-bottom: 20px;
 }
+
+.bottom_space_10 {
+	margin-bottom: 10px;
+}
+
+.affix-right {
+	margin-right: 40px;
+}
+
+@media ( max-width : 767px) {
+	.affix {
+		position: static;
+		width: auto;
+		top: 0;
+	}
+}
+
+.form-inline .input-group {
+	display: inline-table;
+}
+
+.help h2 {
+	margin-bottom: 30px
+}
+
+.help h4 {
+	margin-top:20px;
+	margin-bottom:20px;
+}

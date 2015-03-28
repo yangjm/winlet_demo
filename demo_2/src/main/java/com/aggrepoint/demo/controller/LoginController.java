@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aggrepoint.demo.plugin.AdminUserProfile;
+import com.aggrepoint.demo.plugin.DemoUserProfile;
 import com.aggrepoint.demo.svc.SysUserService;
 import com.aggrepoint.winlet.UserEngine;
 import com.aggrepoint.winlet.spring.annotation.AccessRule;
@@ -37,7 +37,7 @@ public class LoginController {
 	 */
 	@Window
 	@AccessRule("anonymous")
-	@Return(log = "Show login window")
+	@Return(log = "显示登录窗口")
 	public String loginWin() {
 		return "login";
 	}
@@ -65,8 +65,8 @@ public class LoginController {
 			HttpServletRequest req, UserEngine ue) {
 		int ret = svc.auth(loginName, password);
 		if (ret == 0) {
-			ue.setUser(new AdminUserProfile(svc
-					.findByLoginNameWithRights(loginName)));
+			ue.setUser(new DemoUserProfile(svc
+					.findByLoginNameWithRightCodes(loginName)));
 			return "";
 		}
 

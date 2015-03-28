@@ -4,7 +4,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 
 <div class="bottom_space">
-	<button type="button" class="btn btn-primary" onclick="win$.post('editRight', {rid: 0, cid: ${param.selcat}})">
+	<button type="button" class="btn btn-default" onclick="win$.post('editRight', {rid: 0, cid: ${param.selcat}})">
 		<span class="glyphicon glyphicon-plus"></span> 添加权限
 	</button>
 </div>
@@ -31,7 +31,7 @@
 					</button>
 					<button type="button" class="btn btn-warning btn-xs"
 						onclick="win$.post('deleteRight', {rid: ${right.rightId}})">
-						<span class="glyphicon glyphicon-remove"></span>
+						<span class="glyphicon glyphicon-trash"></span>
 					</button>
 				</div>
 			</td>

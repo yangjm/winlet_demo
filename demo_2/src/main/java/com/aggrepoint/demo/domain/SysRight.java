@@ -3,16 +3,19 @@ package com.aggrepoint.demo.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Domain class for table SYS_RIGHTS
+ * 权限
  *
  * @author Jim
  */
@@ -33,8 +36,12 @@ public class SysRight implements Serializable {
 	@Size(max = 15)
 	private String name;
 
-	@Size(max = 30)
+	@Size(max = 500)
 	private String description;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "rightCatId", insertable = false, updatable = false)
+	private SysRightCat cat;
 
 	public int getRightId() {
 		return rightId;
@@ -74,5 +81,13 @@ public class SysRight implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public SysRightCat getCat() {
+		return cat;
+	}
+
+	public void setCat(SysRightCat cat) {
+		this.cat = cat;
 	}
 }

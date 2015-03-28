@@ -5,7 +5,6 @@
 
 <div class="jumbotron">
 	<h1>用户登录</h1>
-	<p>(演示管理员账号：admin/admin)</p>
 	<p>
 		<win:form name="login" action="login" method="post">
 			<div class="form-group row">

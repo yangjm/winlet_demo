@@ -13,6 +13,7 @@ import com.aggrepoint.demo.domain.SysRightCat;
 import com.aggrepoint.demo.svc.SysRightCatService;
 import com.aggrepoint.demo.svc.SysRightService;
 import com.aggrepoint.winlet.form.Form;
+import com.aggrepoint.winlet.spring.annotation.AccessRule;
 import com.aggrepoint.winlet.spring.annotation.Action;
 import com.aggrepoint.winlet.spring.annotation.Return;
 import com.aggrepoint.winlet.spring.annotation.Window;
@@ -24,6 +25,7 @@ import com.aggrepoint.winlet.spring.annotation.Winlet;
  * @author jiangmingyang
  */
 @Winlet("sysright")
+@AccessRule("hasRight(\"sys.right\")")
 public class SysRightController {
 	@Autowired
 	SysRightCatService catSvc;
@@ -45,14 +47,11 @@ public class SysRightController {
 
 	@Action
 	@Return(value = "catedit", log = "添加或编辑权限组", dialog = true, cache = true)
+	@Return(value = "notfound", view = "", log = "找不到要编辑的权限组")
 	public String editCat(HttpServletRequest req, Model model,
 			@RequestParam(value = "cid", required = false) Integer catid) {
-		if (catid == null)
-			return "";
-
-		model.addAttribute("CAT",
-				catid == 0 ? new SysRightCat() : catSvc.find(catid));
-		return "catedit";
+		return CommonActions.edit(model, catid, catSvc::find, SysRightCat::new,
+				"CAT", "catedit");
 	}
 
 	@Action
@@ -69,15 +68,7 @@ public class SysRightController {
 				form.addError("catCode", "权限组代码已经被使用。");
 		}
 
-		if (form.isValidateField())
-			return form.hasError() ? "vf_error" : "vf";
-
-		if (form.hasError())
-			return "error";
-
-		catSvc.createOrUpdate(cat);
-
-		return "";
+		return CommonActions.save(form, cat, catSvc::createOrUpdate);
 	}
 
 	@Action
@@ -87,23 +78,9 @@ public class SysRightController {
 			@RequestParam(value = "cid", required = false) Integer cid,
 			@RequestParam(value = "confirm", required = false) Integer confirm,
 			Model model) {
-		if (cid == null || cid == 0) // 没有接收到权限组ID
-			return "";
-
-		SysRightCat cat = catSvc.find(cid);
-		if (cat == null) // 找不到要删除的权限组
-			return "";
-
-		if (confirm != null && confirm > 0) { // 用户已经确认删除
-			catSvc.deleteCascade(cid);
-			return "deleted";
-		} else { // 请用户确认删除
-			model.addAttribute("MESSAGE", "权限组“" + cat.getName()
-					+ "”中所有权限将被连带删除。确认要删除?");
-			model.addAttribute("ACTION", "deleteCat");
-			model.addAttribute("PARAMS", "cid: " + cid + ", confirm: 1");
-			return "common/confirm";
-		}
+		return CommonActions.deleteAfterConfirm(model, cid, confirm,
+				catSvc::find, catSvc::deleteById, p -> "权限组“" + p.getName()
+						+ "”中所有权限将被连带删除。确认要删除?", "deleteCat", "cid");
 	}
 
 	// //////////////////////////////////////////////////////////////
@@ -133,25 +110,18 @@ public class SysRightController {
 
 	@Action
 	@Return(value = "rightedit", log = "添加或编辑权限", dialog = true, cache = true)
+	@Return(value = "notfound", view = "", log = "找不到要编辑的权限")
 	public String editRight(HttpServletRequest req, Model model,
 			@RequestParam(value = "cid", required = false) Integer catId,
 			@RequestParam(value = "rid", required = false) Integer rightId) {
-		if (rightId == null)
-			return "";
-
-		SysRight right = null;
-
-		if (rightId == 0) {
+		return CommonActions.edit(model, rightId, rightSvc::find, () -> {
 			if (catId == null) // 添加权限时，必须指定所属的权限组
-				return "";
+					return null;
 
-			right = new SysRight();
-			right.setRightCatId(catId);
-		} else
-			right = rightSvc.find(rightId);
-
-		model.addAttribute("RIGHT", right);
-		return "rightedit";
+				SysRight right = new SysRight();
+				right.setRightCatId(catId);
+				return right;
+			}, "RIGHT", "rightedit");
 	}
 
 	@Action
@@ -169,15 +139,7 @@ public class SysRightController {
 				form.addError("rightCode", "权限代码已经被使用。");
 		}
 
-		if (form.isValidateField())
-			return form.hasError() ? "vf_error" : "vf";
-
-		if (form.hasError())
-			return "error";
-
-		rightSvc.createOrUpdate(right);
-
-		return "";
+		return CommonActions.save(form, right, rightSvc::createOrUpdate);
 	}
 
 	@Action
@@ -187,21 +149,8 @@ public class SysRightController {
 			@RequestParam(value = "rid", required = false) Integer rid,
 			@RequestParam(value = "confirm", required = false) Integer confirm,
 			Model model) {
-		if (rid == null || rid == 0) // 没有接收到权限ID
-			return "";
-
-		SysRight right = rightSvc.find(rid);
-		if (right == null) // 找不到要删除的权限
-			return "";
-
-		if (confirm != null && confirm > 0) { // 用户已经确认删除
-			rightSvc.deleteCascade(rid);
-			return "deleted";
-		} else { // 请用户确认删除
-			model.addAttribute("MESSAGE", "确认要删除权限“" + right.getName() + "”?");
-			model.addAttribute("ACTION", "deleteRight");
-			model.addAttribute("PARAMS", "rid: " + rid + ", confirm: 1");
-			return "common/confirm";
-		}
+		return CommonActions.deleteAfterConfirm(model, rid, confirm,
+				rightSvc::find, rightSvc::deleteById,
+				p -> "确认要删除权限“" + p.getName() + "”?", "deleteRight", "rid");
 	}
 }

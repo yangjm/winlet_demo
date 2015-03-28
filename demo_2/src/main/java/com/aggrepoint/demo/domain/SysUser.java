@@ -1,6 +1,7 @@
 package com.aggrepoint.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.persistence.Entity;
@@ -8,9 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Domain class for table SYS_USERS
+ * 用户
  *
  * @author Jim
  */
@@ -22,16 +28,29 @@ public class SysUser implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 
+	@Email
+	@NotEmpty
 	private String email;
 
+	@Pattern(regexp = "^[a-zA-Z]\\w{3,14}$")
 	private String loginName;
 
+	@Size(max = 50)
 	private String password;
 
+	@NotEmpty
+	@Size(max = 15)
 	private String userName;
 
 	@Transient
-	private HashSet<String> rights;
+	@Size(max = 50)
+	private String password2;
+
+	@Transient
+	private ArrayList<SysRole> roles;
+
+	@Transient
+	private HashSet<String> rightCodes;
 
 	public int getUserId() {
 		return userId;
@@ -73,9 +92,24 @@ public class SysUser implements Serializable {
 		this.userName = userName;
 	}
 
-	public HashSet<String> getRights() {
-		if (rights == null)
-			rights = new HashSet<String>();
-		return rights;
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
+	}
+
+	public HashSet<String> getRightCodes() {
+		if (rightCodes == null)
+			rightCodes = new HashSet<String>();
+		return rightCodes;
+	}
+
+	public ArrayList<SysRole> getRoles() {
+		if (roles == null)
+			roles = new ArrayList<SysRole>();
+
+		return roles;
 	}
 }

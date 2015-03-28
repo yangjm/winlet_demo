@@ -10,6 +10,7 @@
 
 		<link rel="stylesheet" type="text/css" href="/demo_2/resources/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/demo_2/resources/bootstrap/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="/demo_2/resources/fontawesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="/demo_2/resources/winlet_local/winlet_local.min.css">
 		<link rel="stylesheet" type="text/css" href="/demo_2/resources/style.css">
 		<script src="/demo_2/resources/jquery/jquery-1.11.1.min.js"></script>

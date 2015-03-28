@@ -1,5 +1,6 @@
 package com.aggrepoint.demo.svc;
 
+import com.aggrepoint.dao.PageList;
 import com.aggrepoint.demo.dao.SysUserDao;
 import com.aggrepoint.demo.domain.SysUser;
 
@@ -27,5 +28,21 @@ public interface SysUserService extends SysUserDao {
 	 *            登录账号
 	 * @return
 	 */
-	public SysUser findByLoginNameWithRights(String name);
+	public SysUser findByLoginNameWithRightCodes(String name);
+
+	/**
+	 * 查找用户信息，连带加载角色
+	 * 
+	 * @param loginName
+	 * @param email
+	 * @param userName
+	 * @param order
+	 * @param orderDir
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	PageList<SysUser> findWithRoles(String loginName, String email,
+			String userName, String order, String orderDir, int pageNum,
+			int pageSize);
 }

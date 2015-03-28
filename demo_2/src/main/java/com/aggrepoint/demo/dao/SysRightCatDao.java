@@ -19,7 +19,12 @@ public interface SysRightCatDao extends DaoService<SysRightCat> {
 	 * @return
 	 */
 	@Find("from SysRightCat order by catCode")
-	default public List<SysRightCat> findAllOrderByCode() {
+	default List<SysRightCat> findAllOrderByCode() {
+		return null;
+	}
+
+	@Find("select distinct c from SysRightCat c left join fetch c.rights order by c.catCode")
+	default List<SysRightCat> findAllWithRights() {
 		return null;
 	}
 
@@ -30,18 +35,20 @@ public interface SysRightCatDao extends DaoService<SysRightCat> {
 	 * @return
 	 */
 	@Find("from SysRightCat where catCode = :1")
-	default public SysRightCat findByCatCode(String code) {
+	default SysRightCat findByCatCode(String code) {
 		return null;
 	}
 
 	/**
-	 * 根据id删除权限组。不进行级联删除（除非数据库定义了级联删除）
+	 * 根据id级联删除权限组
 	 * 
 	 * @param id
 	 * @return
 	 */
+	@Delete("delete from SysRoleRight where rightId in (select rightId from SysRight where rightCatId = :1)")
+	@Delete("delete from SysRight where rightCatId = :1")
 	@Delete("delete SysRightCat where rightCatId = :1")
-	default public int deleteById(int id) {
+	default int deleteById(int id) {
 		return 0;
 	}
 }

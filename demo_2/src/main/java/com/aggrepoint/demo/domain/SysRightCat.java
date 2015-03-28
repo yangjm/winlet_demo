@@ -1,18 +1,21 @@
 package com.aggrepoint.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Domain class for table SYS_RIGHT_CATS
+ * 权限组
  *
  * @author Jim
  */
@@ -30,6 +33,9 @@ public class SysRightCat implements Serializable {
 	@NotEmpty
 	@Size(max = 15)
 	private String name;
+
+	@OneToMany(mappedBy = "cat")
+	private List<SysRight> rights;
 
 	public int getRightCatId() {
 		return rightCatId;
@@ -53,5 +59,21 @@ public class SysRightCat implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public SysRightCat clone() {
+		SysRightCat cat = new SysRightCat();
+
+		cat.catCode = catCode;
+		cat.name = name;
+		cat.rightCatId = rightCatId;
+
+		return cat;
+	}
+
+	public List<SysRight> getRights() {
+		if (rights == null)
+			rights = new ArrayList<SysRight>();
+		return rights;
 	}
 }
