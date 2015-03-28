@@ -1,8 +1,7 @@
 package com.aggrepoint.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.aggrepoint.demo.plugin.DemoUserProfile;
@@ -62,7 +61,7 @@ public class LoginController {
 	public String login(
 			@RequestParam(value = "loginName", required = false) String loginName,
 			@RequestParam(value = "password", required = false) String password,
-			HttpServletRequest req, UserEngine ue) {
+			Model model, UserEngine ue) {
 		int ret = svc.auth(loginName, password);
 		if (ret == 0) {
 			ue.setUser(new DemoUserProfile(svc
@@ -70,7 +69,7 @@ public class LoginController {
 			return "";
 		}
 
-		req.setAttribute("ERROR", "用户名或密码不正确.");
+		model.addAttribute("ERROR", "用户名或密码不正确.");
 
 		switch (ret) {
 		case -1:

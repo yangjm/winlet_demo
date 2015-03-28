@@ -1,6 +1,5 @@
 package com.aggrepoint.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class UserController {
 	@Action
 	@Return(value = "edit", log = "添加或编辑用户账号", dialog = true, cache = true)
 	@Return(value = "notfound", view = "", log = "找不到要编辑的用户账号")
-	public String editUser(HttpServletRequest req, Model model,
+	public String editUser(Model model,
 			@RequestParam(value = "uid", required = false) Integer userId) {
 		return CommonActions.edit(model, userId, svc::find, SysUser::new,
 				"USER", "edit");
@@ -126,21 +125,21 @@ public class UserController {
 	@Action
 	@Return(value = "common/info", log = "请用户选择", dialog = true, cache = true)
 	@Return(log = "批量授权")
-	public String assignRoles(HttpServletRequest req,
+	public String assignRoles(Model model,
 			@RequestParam(value = "userid", required = false) Integer[] users,
 			@RequestParam(value = "roles", required = false) Integer[] roles) {
 		if (users == null || roles == null) {
 			if (users == null && roles == null)
-				req.setAttribute("MESSAGE", "请先选择要授权的用户账号和要赋予的角色。");
+				model.addAttribute("MESSAGE", "请先选择要授权的用户账号和要赋予的角色。");
 			else if (users == null)
-				req.setAttribute("MESSAGE", "请先选择要授权的用户账号。");
+				model.addAttribute("MESSAGE", "请先选择要授权的用户账号。");
 			else
-				req.setAttribute("MESSAGE", "请先选择要赋予用户账号的角色。");
+				model.addAttribute("MESSAGE", "请先选择要赋予用户账号的角色。");
 			return "common/info";
 		}
 
 		userRoleSvc.add(users, roles);
-		req.setAttribute("CHECKED", users);
+		model.addAttribute("CHECKED", users);
 		return "";
 	}
 
@@ -164,7 +163,7 @@ public class UserController {
 	@Action
 	@Return(value = "common/confirm", log = "请用户确认是否要删除用户账号", dialog = true, cache = true)
 	@Return(value = "deleted", view = "", log = "用户账号被删除")
-	public String deleteUser(HttpServletRequest req,
+	public String deleteUser(
 			@RequestParam(value = "uid", required = false) Integer userid,
 			@RequestParam(value = "confirm", required = false) Integer confirm,
 			Model model) {

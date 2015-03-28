@@ -1,6 +1,5 @@
 package com.aggrepoint.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,7 @@ public class SysRoleController {
 	@Action
 	@Return(value = "edit", log = "添加或编辑角色", dialog = true, cache = true)
 	@Return(value = "notfound", view = "", log = "找不到要编辑的角色")
-	public String editRole(HttpServletRequest req, Model model,
+	public String editRole(Model model,
 			@RequestParam(value = "rid", required = false) Integer roleid) {
 		return CommonActions.edit(model, roleid, svc::find, SysRole::new,
 				"ROLE", "edit");
@@ -81,21 +80,21 @@ public class SysRoleController {
 	@Action
 	@Return(value = "common/info", log = "请用户选择", dialog = true, cache = true)
 	@Return(log = "批量授权")
-	public String assignRights(HttpServletRequest req,
+	public String assignRights(Model model,
 			@RequestParam(value = "roleid", required = false) Integer[] roles,
 			@RequestParam(value = "rights", required = false) Integer[] rights) {
 		if (roles == null || rights == null) {
 			if (roles == null && rights == null)
-				req.setAttribute("MESSAGE", "请先选择要授权的角色和要赋予的权限。");
+				model.addAttribute("MESSAGE", "请先选择要授权的角色和要赋予的权限。");
 			else if (roles == null)
-				req.setAttribute("MESSAGE", "请先选择要授权的角色。");
+				model.addAttribute("MESSAGE", "请先选择要授权的角色。");
 			else
-				req.setAttribute("MESSAGE", "请先选择要赋予角色的权限。");
+				model.addAttribute("MESSAGE", "请先选择要赋予角色的权限。");
 			return "common/info";
 		}
 
 		roleRightSvc.add(roles, rights);
-		req.setAttribute("CHECKED", roles);
+		model.addAttribute("CHECKED", roles);
 		return "";
 	}
 
@@ -119,7 +118,7 @@ public class SysRoleController {
 	@Action
 	@Return(value = "common/confirm", log = "请用户确认是否要删除角色", dialog = true, cache = true)
 	@Return(value = "deleted", view = "", log = "角色被删除")
-	public String deleteRole(HttpServletRequest req,
+	public String deleteRole(
 			@RequestParam(value = "rid", required = false) Integer roleid,
 			@RequestParam(value = "confirm", required = false) Integer confirm,
 			Model model) {

@@ -1,7 +1,5 @@
 package com.aggrepoint.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,10 +22,10 @@ public class SysRightController2 extends SysRightController {
 	@Override
 	@Action
 	@Return(value = "deleted", view = "", log = "权限组被删除")
-	public String deleteCat(HttpServletRequest req,
+	public String deleteCat(
 			@RequestParam(value = "cid", required = false) Integer cid,
 			@RequestParam(value = "confirm", required = false) Integer confirm,
 			Model model) {
-		return super.deleteCat(req, cid, confirm, model);
+		return super.deleteCat(cid, confirm, model);
 	}
 }

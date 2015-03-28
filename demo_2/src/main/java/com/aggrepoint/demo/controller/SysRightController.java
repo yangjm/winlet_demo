@@ -1,6 +1,5 @@
 package com.aggrepoint.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +47,7 @@ public class SysRightController {
 	@Action
 	@Return(value = "catedit", log = "添加或编辑权限组", dialog = true, cache = true)
 	@Return(value = "notfound", view = "", log = "找不到要编辑的权限组")
-	public String editCat(HttpServletRequest req, Model model,
+	public String editCat(Model model,
 			@RequestParam(value = "cid", required = false) Integer catid) {
 		return CommonActions.edit(model, catid, catSvc::find, SysRightCat::new,
 				"CAT", "catedit");
@@ -74,7 +73,7 @@ public class SysRightController {
 	@Action
 	@Return(value = "common/confirm", log = "请用户确认是否要删除权限组", dialog = true, cache = true)
 	@Return(value = "deleted", view = "", log = "权限组被删除", update = "rightListWin")
-	public String deleteCat(HttpServletRequest req,
+	public String deleteCat(
 			@RequestParam(value = "cid", required = false) Integer cid,
 			@RequestParam(value = "confirm", required = false) Integer confirm,
 			Model model) {
@@ -111,7 +110,7 @@ public class SysRightController {
 	@Action
 	@Return(value = "rightedit", log = "添加或编辑权限", dialog = true, cache = true)
 	@Return(value = "notfound", view = "", log = "找不到要编辑的权限")
-	public String editRight(HttpServletRequest req, Model model,
+	public String editRight(Model model,
 			@RequestParam(value = "cid", required = false) Integer catId,
 			@RequestParam(value = "rid", required = false) Integer rightId) {
 		return CommonActions.edit(model, rightId, rightSvc::find, () -> {
@@ -145,7 +144,7 @@ public class SysRightController {
 	@Action
 	@Return(value = "common/confirm", log = "请用户确认是否要删除权限", dialog = true, cache = true)
 	@Return(value = "deleted", view = "", log = "权限被删除")
-	public String deleteRight(HttpServletRequest req,
+	public String deleteRight(
 			@RequestParam(value = "rid", required = false) Integer rid,
 			@RequestParam(value = "confirm", required = false) Integer confirm,
 			Model model) {
