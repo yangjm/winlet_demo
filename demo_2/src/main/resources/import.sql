@@ -1,42 +1,42 @@
--- æƒé™ç»„
-insert into SYS_RIGHT_CATS(RIGHT_CAT_ID, NAME, CAT_CODE) values(1, 'ç³»ç»Ÿ', 'sys')
-insert into SYS_RIGHT_CATS(RIGHT_CAT_ID, NAME, CAT_CODE) values(2, 'å¸®åŠ©', 'help')
+-- È¨ÏŞ×é
+insert into SYS_RIGHT_CATS(RIGHT_CAT_ID, NAME, CAT_CODE) values(1, 'ÏµÍ³', 'sys')
+insert into SYS_RIGHT_CATS(RIGHT_CAT_ID, NAME, CAT_CODE) values(2, '°ïÖú', 'help')
 
--- æƒé™
-insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(1, 1, 'æƒé™ç®¡ç†', 'right', 'ç³»ç»Ÿæƒé™ç»„åŠæƒé™ç®¡ç†')
-insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(2, 1, 'è§’è‰²ç®¡ç†', 'role', 'ç³»ç»Ÿè§’è‰²ç®¡ç†')
-insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(3, 1, 'ç”¨æˆ·ç®¡ç†', 'user', 'ç³»ç»Ÿç”¨æˆ·ç®¡ç†')
+-- È¨ÏŞ
+insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(1, 1, 'È¨ÏŞ¹ÜÀí', 'right', 'ÏµÍ³È¨ÏŞ×é¼°È¨ÏŞ¹ÜÀí')
+insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(2, 1, '½ÇÉ«¹ÜÀí', 'role', 'ÏµÍ³½ÇÉ«¹ÜÀí')
+insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(3, 1, 'ÓÃ»§¹ÜÀí', 'user', 'ÏµÍ³ÓÃ»§¹ÜÀí')
 
-insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(4, 2, 'æ¼”ç¤ºä»‹ç»', 'intro', 'ä»‹ç»æ¼”ç¤ºä¸­ä½¿ç”¨çš„æ¡†æ¶åŠŸèƒ½')
-insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(5, 2, 'å¸¸è§é—®é¢˜è§£ç­”', 'qa', 'å¼€å‘äººå‘˜å¸¸è§é—®é¢˜è§£ç­”')
+insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(4, 2, 'ÑİÊ¾½éÉÜ', 'intro', '½éÉÜÑİÊ¾ÖĞÊ¹ÓÃµÄ¿ò¼Ü¹¦ÄÜ')
+insert into SYS_RIGHTS(RIGHT_ID, RIGHT_CAT_ID, NAME, RIGHT_CODE, DESCRIPTION) values(5, 2, '³£¼ûÎÊÌâ½â´ğ', 'qa', '¿ª·¢ÈËÔ±³£¼ûÎÊÌâ½â´ğ')
 
--- ç³»ç»Ÿç®¡ç†å‘˜
-insert into SYS_ROLES(ROLE_ID, NAME, DESCRIPTION) values (1, 'ç³»ç»Ÿç®¡ç†å‘˜', 'å¯ä»¥è®¿é—®ç³»ç»Ÿä¸­æ‰€æœ‰åŠŸèƒ½');
+-- ÏµÍ³¹ÜÀíÔ±
+insert into SYS_ROLES(ROLE_ID, NAME, DESCRIPTION) values (1, 'ÏµÍ³¹ÜÀíÔ±', '¿ÉÒÔ·ÃÎÊÏµÍ³ÖĞËùÓĞ¹¦ÄÜ');
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(1, 1)
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(1, 2)
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(1, 3)
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(1, 4)
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(1, 5)
 
--- ç”¨æˆ·ç®¡ç†å‘˜
-insert into SYS_ROLES(ROLE_ID, NAME, DESCRIPTION) values (2, 'ç”¨æˆ·ç®¡ç†å‘˜', 'å¯ä»¥è¿›è¡Œç”¨æˆ·ç®¡ç†ï¼Œä½†ä¸èƒ½é…ç½®ç³»ç»Ÿæƒé™å’Œè§’è‰²');
+-- ÓÃ»§¹ÜÀíÔ±
+insert into SYS_ROLES(ROLE_ID, NAME, DESCRIPTION) values (2, 'ÓÃ»§¹ÜÀíÔ±', '¿ÉÒÔ½øĞĞÓÃ»§¹ÜÀí£¬µ«²»ÄÜÅäÖÃÏµÍ³È¨ÏŞºÍ½ÇÉ«');
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(2, 3)
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(2, 4)
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(2, 5)
 
--- æ™®é€šè®¿å®¢
-insert into SYS_ROLES(ROLE_ID, NAME, DESCRIPTION) values (3, 'æ™®é€šè®¿å®¢', 'åªèƒ½è®¿é—®å¸®åŠ©');
+-- ÆÕÍ¨·Ã¿Í
+insert into SYS_ROLES(ROLE_ID, NAME, DESCRIPTION) values (3, 'ÆÕÍ¨·Ã¿Í', 'Ö»ÄÜ·ÃÎÊ°ïÖú');
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(3, 4)
 insert into SYS_ROLE_RIGHTS(ROLE_ID, RIGHT_ID) values(3, 5)
 
--- ç³»ç»Ÿç®¡ç†å‘˜ç”¨æˆ·
-insert into SYS_USERS(USER_ID, USER_NAME, LOGIN_NAME, PASSWORD, EMAIL) values(1, 'é˜¿åœŸä»”', 'admin', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 'demo_admin@aggrepoint.com')
+-- ÏµÍ³¹ÜÀíÔ±ÓÃ»§
+insert into SYS_USERS(USER_ID, USER_NAME, LOGIN_NAME, PASSWORD, EMAIL) values(1, '°¢ÍÁ×Ğ', 'admin', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 'demo_admin@aggrepoint.com')
 insert into SYS_USER_ROLES(USER_ID, ROLE_ID) values(1, 1)
 
--- ç”¨æˆ·ç®¡ç†å‘˜
-insert into SYS_USERS(USER_ID, USER_NAME, LOGIN_NAME, PASSWORD, EMAIL) values(2, 'å­™å°ç¾', 'user', 'BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=', 'demo_user@aggrepoint.com')
+-- ÓÃ»§¹ÜÀíÔ±
+insert into SYS_USERS(USER_ID, USER_NAME, LOGIN_NAME, PASSWORD, EMAIL) values(2, 'ËïĞ¡ÃÀ', 'user', 'BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=', 'demo_user@aggrepoint.com')
 insert into SYS_USER_ROLES(USER_ID, ROLE_ID) values(2, 2)
 
--- æ™®é€šè®¿å®¢ç”¨æˆ·
-insert into SYS_USERS(USER_ID, USER_NAME, LOGIN_NAME, PASSWORD, EMAIL) values(3, 'é’±å¤«äºº', 'visitor', 'XxT55tgPgCplJpgE8lUu+YifLHzOxQZyFOWKHkjgs/8=', 'demo_user@aggrepoint.com')
+-- ÆÕÍ¨·Ã¿ÍÓÃ»§
+insert into SYS_USERS(USER_ID, USER_NAME, LOGIN_NAME, PASSWORD, EMAIL) values(3, 'Ç®·òÈË', 'visitor', 'XxT55tgPgCplJpgE8lUu+YifLHzOxQZyFOWKHkjgs/8=', 'demo_user@aggrepoint.com')
 insert into SYS_USER_ROLES(USER_ID, ROLE_ID) values(3, 3)
