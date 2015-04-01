@@ -61,6 +61,12 @@
 	          	<site:tree level="1" name="page0">
 	          		<site:eval type="focus" name="isFocus"/>
 	            	<li<% if (isFocus.booleanValue()) { %> class="active"<% } %>><a href="<site:url/>"><site:name/></a></li>
+	            	<% if (isFocus.booleanValue()) { %>
+			          	<site:tree level="2" name="page1">
+			          		<site:eval type="focus" name="isFocus"/>
+			            	<li class="level2<% if (isFocus.booleanValue()) { %> active"<% } %>"><a href="<site:url/>"><site:name/></a></li>
+			          	</site:tree>
+		          	<% } %>
 	          	</site:tree>
 	          </ul>
 	        </div>

@@ -84,3 +84,7 @@ body {
 	margin-top:20px;
 	margin-bottom:20px;
 }
+
+li.level2 {
+	margin-left: 40px;
+}
