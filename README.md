@@ -24,7 +24,7 @@ git clone https://github.com/yangjm/winlet_demo.git
 
 demo_1中有两个演示页面，URL为（假设Eclipse服务器使用端口8080）：
 * http://localhost:8080/demo_1/resources/user.html
-* http://localhost:8080/demo_1/resources/user.html
+* http://localhost:8080/demo_1/resources/user1.html
 
 demo_2的访问入口URL：
 * http://localhost:8080/demo_2/site/home
