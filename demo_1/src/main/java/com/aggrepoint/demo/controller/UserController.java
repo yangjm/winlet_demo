@@ -1,6 +1,5 @@
 package com.aggrepoint.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.aggrepoint.demo.domain.User;
 import com.aggrepoint.demo.svc.UserService;
+import com.aggrepoint.winlet.PageStorage;
 import com.aggrepoint.winlet.form.Form;
 import com.aggrepoint.winlet.spring.annotation.Action;
 import com.aggrepoint.winlet.spring.annotation.Return;
@@ -53,9 +53,9 @@ public class UserController {
 
 	@Action
 	@Return(update = "editWin", cache = true, log = "启动添加或者编辑用户信息")
-	public String editUser(HttpServletRequest req, @RequestParam("uid") int uid)
+	public String editUser(PageStorage ps, @RequestParam("uid") int uid)
 			throws Exception {
-		req.setAttribute("EDITUSERID", uid);
+		ps.setAttribute("EDITUSERID", uid);
 		return "";
 	}
 
@@ -69,10 +69,12 @@ public class UserController {
 	@Return(value = "", log = "用户信息编辑窗口不用显示")
 	@Return(value = "edit", log = "显示用户窗口")
 	@Return(value = "notfound", log = "找不到要编辑的用户", view = "")
-	public String editWin(HttpServletRequest req, Model model) {
-		Integer userId = (Integer) req.getAttribute("EDITUSERID");
+	public String editWin(PageStorage ps, Model model) {
+		Integer userId = (Integer) ps.getAttribute("EDITUSERID");
 		if (userId == null)
 			return "";
+		else
+			ps.removeAttribute("EDITUSERID");
 
 		User user = null;
 
