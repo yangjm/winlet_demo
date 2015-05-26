@@ -27,10 +27,10 @@
 			<td><input name="roleid" type="checkbox" value="${role.roleId}"  ${win:if(win:contains(CHECKED, role.roleId), "checked=checked")}/></td>
 			<td>
 				<div class="btn-group pull-right" role="group">
-			      <button class="btn btn-xs btn-info" onclick="win$.post('editRole', {rid: ${role.roleId}})">
+			      <button type="button" class="btn btn-xs btn-info" onclick="win$.post('editRole', {rid: ${role.roleId}})">
 			        <span class="glyphicon glyphicon-pencil"></span>
 				  </button>
-			      <button class="btn btn-xs btn-warning" onclick="win$.post('deleteRole', {rid: ${role.roleId}})">
+			      <button type="button" class="btn btn-xs btn-warning" onclick="win$.post('deleteRole', {rid: ${role.roleId}})">
 			        <span class="glyphicon glyphicon-trash"></span>
 			      </button>
 			    </div>

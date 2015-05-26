@@ -13,10 +13,10 @@
 	<c:forEach var="cat" items="${CATS}">
 		<a href="javascript:win$.get('rightListWin', {selcat: '${cat.rightCatId}'})" class="list-group-item ${win:if(cat.rightCatId eq param.selcat, 'active')}">
 			<div class="btn-group pull-right" role="group">
-		      <button class="btn btn-xs btn-info" onclick="win$.post('editCat', {cid: ${cat.rightCatId}})">
+		      <button type="button" class="btn btn-xs btn-info" onclick="win$.post('editCat', {cid: ${cat.rightCatId}})">
 		        <span class="glyphicon glyphicon-pencil"></span>
 			  </button>
-		      <button class="btn btn-xs btn-warning" onclick="win$.post('deleteCat', {cid: ${cat.rightCatId}})">
+		      <button type="button" class="btn btn-xs btn-warning" onclick="win$.post('deleteCat', {cid: ${cat.rightCatId}})">
 		        <span class="glyphicon glyphicon-trash"></span>
 		      </button>
 		    </div>
