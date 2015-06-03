@@ -11,7 +11,7 @@
 
 <div class="list-group">
 	<c:forEach var="cat" items="${CATS}">
-		<a href="javascript:win$.post('showRights', {cid: '${cat.rightCatId}'})" class="list-group-item ${win:if(cat.rightCatId eq param.selcat, 'active')}">
+		<a onclick="win$.post('showRights', {cid: '${cat.rightCatId}'})" class="list-group-item ${win:if(cat.rightCatId eq param.selcat, 'active')}">
 			<div class="btn-group pull-right" role="group">
 		      <button type="button" class="btn btn-xs btn-info" onclick="win$.post('editCat', {cid: ${cat.rightCatId}})">
 		        <span class="glyphicon glyphicon-pencil"></span>
