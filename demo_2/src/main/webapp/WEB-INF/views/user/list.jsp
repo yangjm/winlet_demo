@@ -8,19 +8,19 @@
 		<div class="form-group">
 		    <div class="input-group">
 				<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-				<input type="text" class="form-control" name="loginName" id="loginName" value="${param.loginName}" placeholder="账号">
+				<input type="text" class="form-control" name="sLoginName" value="${param.sLoginName}" placeholder="账号">
 			</div>
 		</div>
 		<div class="form-group">
 		    <div class="input-group">
 				<div class="input-group-addon"><i class="fa fa-smile-o"></i></div>
-				<input type="text" class="form-control" name="userName" id="userName" value="${param.userName}" placeholder="姓名">
+				<input type="text" class="form-control" name="sUserName" value="${param.sUserName}" placeholder="姓名">
 			</div>
 		</div>
 		<div class="form-group">
 		    <div class="input-group">
 				<div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-				<input type="text" class="form-control" name="email" id="email" value="${param.email}"  placeholder="邮件">
+				<input type="text" class="form-control" name="sEmail" value="${param.sEmail}"  placeholder="邮件">
 			</div>
 		</div>
 		<button type="submit" class="btn btn-default">搜索</button>

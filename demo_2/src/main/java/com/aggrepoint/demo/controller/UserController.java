@@ -43,9 +43,9 @@ public class UserController {
 	@Window
 	@Return(value = "list", log = "显示用户账号列表")
 	public String listWin(
-			@RequestParam(value = "loginName", required = false) String loginName,
-			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "userName", required = false) String userName,
+			@RequestParam(value = "sLoginName", required = false) String loginName,
+			@RequestParam(value = "sEmail", required = false) String email,
+			@RequestParam(value = "sUserName", required = false) String userName,
 			@RequestParam(value = "page", required = false) Integer pageId,
 			@RequestParam(value = "sortby", required = false) String sortBy,
 			@RequestParam(value = "sort", required = false) String sort,
